@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import LoginForm from './../user/LoginForm';
+import RegisterForm from '../user/RegisterForm';
 
 export default class HomeContainer extends Component {
     render = () => {
@@ -9,6 +10,7 @@ export default class HomeContainer extends Component {
                     <div></div>
                     <div className="signup">
                         <LoginForm {...this.props} />
+                        <RegisterForm />
                     </div>
                 </div>
             </section>
