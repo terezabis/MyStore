@@ -6,7 +6,8 @@ const kinveyAppSecret = "3a5bea2fda4c496db8d0bc9c268a226e";
 // Creates the authentication header
 function makeAuth(type) {
     return type === 'basic'
-        ?  'Basic ' + btoa(kinveyAppKey + ':' + kinveyAppSecret)
+        //?  'Basic ' + btoa(kinveyAppKey + ':' + kinveyAppSecret)
+        ?  'Basic ' + btoa('react' + ':' + '1234')
         :  'Kinvey ' + sessionStorage.getItem('authtoken');
 }
 
@@ -30,7 +31,7 @@ function get (module, endpoint, auth) {
 function post (module, endpoint, auth, data) {
     let req = makeRequest('POST', module, endpoint, auth);
     req.data = data;
-    console.log(req)
+    //console.log(req)
     return $.ajax(req);
 }
 

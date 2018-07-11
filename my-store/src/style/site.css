@@ -1,4 +1,67 @@
-#profile {
+#welcome {
+    margin: 50px;
+}
+
+
+#menu {
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: #7FBAE0;
+}
+
+#menu div {
     display: inline-block;
-    color: red;
+}
+
+.nav {
+    margin: 0;
+    padding: 5px;
+    background-color: #7FBAE0;
+    color: black;
+    text-decoration: none;
+    border-right: 1px solid black;
+}
+
+.nav:hover {
+    background-color: whitesmoke;
+}
+
+#profile {
+    margin-left: 20px;
+}
+
+img {
+    max-height: 200px;
+    max-width: 200px;
+}
+
+#notifications {
+    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+    margin: 1em;
+}
+
+.notification {
+    font-size: 1.5em;
+    color: #ffffff;
+    text-align: right;
+}
+
+.notification>span {
+    display: inline-block;
+    padding:  0.5em 2em 0.5em 2em;
+    border-radius: 10px;
+}
+
+#loadingBox>span {
+    background: #7CB3E9;
+}
+#infoBox>span {
+    background: #393;
+}
+#errorBox>span {
+    background: #F50;
 }

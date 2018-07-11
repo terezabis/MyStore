@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+const AdminRoleId = "d8c9bd74-7204-4e59-90fa-394db832909c";
 
 function withAuthorization(WrappedComponent, roles) {
     return class WithAuthorization extends Component {
@@ -11,6 +12,7 @@ function withAuthorization(WrappedComponent, roles) {
 
         componentDidMount = () => {
             let roles = sessionStorage.getItem('userRoles')
+
             if (roles) {
                 this.setState({ roles : roles.split(',') });
             }
@@ -32,7 +34,7 @@ function withAuthorization(WrappedComponent, roles) {
 }
 
 export function withAdminAuthorization(Component) {
-    return withAuthorization(Component, ['Admin']);
+    return withAuthorization(Component, [AdminRoleId]);
 }
 
 /* export function withModeratorAuthorization(Component) {

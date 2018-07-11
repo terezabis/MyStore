@@ -43,6 +43,7 @@ export default function withFormManager(Form, model, submitter) {
 
             this.setState({ [fieldName] : fieldValue });
         }
+      
 
         handleSubmit = ev => {
             ev.preventDefault();
@@ -55,14 +56,14 @@ export default function withFormManager(Form, model, submitter) {
                     this.setState({ error })
                 }
             }
-            
+
             submitter.send(data)
                 .then(this.success)
                 .catch(this.fail);
         }
 
         render = () => {
-            console.log('FormManager', this.state);
+            //console.log('FormManager', this.state);
             return (<Form
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}

@@ -7,11 +7,15 @@ export default {
         success: function(res) {
             observer.trigger(observer.events.loginUser, res.username);
             observer.trigger(observer.events.notification, { type: 'success', message: "Successs." })
-            
             sessionStorage.setItem('authtoken', res._kmd.authtoken);
-            sessionStorage.setItem('userRoles', res.Roles.join(','))
+            //sessionStorage.setItem('userRoles', res.Roles.join(','))
+            let roleArray = [];
+            for (let currentRole of res._kmd.roles) {
+                roleArray.push(currentRole.roleId);
+            }
+            sessionStorage.setItem('userRoles', roleArray.join(','));
             
-            this.props.history.push('/catalog');
+            this.props.history.push('/products');
         },
         fail: res => {
             observer.trigger(observer.events.notification, { 
@@ -26,8 +30,10 @@ export default {
         send: data => requester.post('user', '', 'basic', data),
         success: function(res) {
             observer.trigger(observer.events.loginUser, res.username);
-            sessionStorage.setItem('authtoken', res._kmd.authtoken);
+            sessionStorage.setItem('authtoken', res._kmd.authtoken);            
             sessionStorage.setItem('userRoles', res.Roles.join(','))
+
+            this.props.history.push('/products');
         },
         fail: function(res) {
             observer.trigger(observer.events.notification, { 
