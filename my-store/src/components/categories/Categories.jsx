@@ -19,9 +19,10 @@ export default class Categories extends Component {
     render = () => {
         console.log(this.state);
         return (
-            <section id="viewCategories">
+            <div id="viewCategories">
+                <h3>All products</h3>
                 {this.state.categories.map((c, i) => <Category key={c._id} index={i} {...c} />)}
-            </section>
+            </div>
         )
     }
 }

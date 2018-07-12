@@ -1,14 +1,36 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import observer from '../../infrastructure/observer';
+import requester from '../../infrastructure/requester';
 
 export default class Product extends Component {
+    constructor(props) {
+        super(props);
+
+        this.OnDeleted = this.OnDeleted.bind(this);
+    }
+
+    OnDeleted(ev) {
+        // TODO: There is a error when a product is deleted
+        let id = this.props._id;
+        requester.remove('appdata', `products/${id}`, 'Kinvey').then(res => {
+            this.props.isDeleted(true);
+            observer.trigger(observer.events.notification, {
+                type: 'success',
+                message: 'Product deleted.'
+            });
+            // this.props.history.push('/');
+            // this.props.history.push(`/comments/${this.props.postId}`);
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
     render = () => (
         <div className="product">
-            <div className="col rank">
-                <span>{this.props.index + 1}</span>
-            </div>
-            <div className="col thumbnail">
-                    <img src={this.props.image_url} alt="" />
+
+            <div className="thumbnail">
+                <img src={this.props.image_url} alt="" />
             </div>
             <div className="product-content">
                 <div className="title">
@@ -16,24 +38,21 @@ export default class Product extends Component {
                         {this.props.title}
                     </a>
                 </div>
-                <div className="info">
-                    {this.props.description}
-                </div>
+
                 <div className="controls">
-                    <ul>
-                        <li className="action">
-                            <Link to={'/product/details/' + this.props._id}>Details</Link>
-                        </li>
-                        <li className="action">
-                            <Link to={'/product/buy/' + this.props._id}>Buy</Link>
-                        </li>
-                        <li className="action">
-                            <Link to='/' className="editProduct">Edit</Link>
-                        </li>
-                        <li className="action">
-                            <Link to="/" className="deleteProduct">Delete</Link>
-                        </li>
-                    </ul>
+
+                    <Link to={'/product/details/' + this.props._id}>
+                        <button className="action btn-details">Details</button>
+                    </Link>
+                    <Link to={'/product/buy/' + this.props._id}>
+                        <button className="action btn-buy">Buy</button>
+                    </Link>
+                    <Link to={'/edit-product/' + this.props._id} className="editProduct">
+                        <button className="action btn-edit">Edit</button>
+                    </Link>
+                    <Link to="/" className="deleteProduct">
+                        <button className="action btn-delete" onClick={this.OnDeleted}>Delete</button>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -5,24 +5,20 @@ export default class Category extends Component {
     render = () => {
         return (
             <div className="category">
-                <div className="col rank">
-                    <span>{this.props.index + 1}</span>
-                </div>
-                <div className="name">
+                <div className="category-name">
                     {this.props.name}
                 </div>
-                <div className="controls">
-                    <ul>
-                        <li className="action">
-                            <Link to={'/category/' + this.props._id}>View products</Link>
-                        </li>                        
-                        <li className="action">
-                            <Link to='/' className="editCategory">Edit</Link>
-                        </li>
-                        <li className="action">
-                            <Link to="/" className="deleteCategory">Delete</Link>
-                        </li>
-                    </ul>
+                <div className="category-controls">
+                    <Link to={'/category/' + this.props._id}>
+                        <button className="action btn-details">Products</button>
+                    </Link>
+                    <Link to='/' className="editCategory">
+                        <button className="action btn-edit">Edit</button>
+                    </Link>
+                    <Link to="/" className="deleteCategory">
+                        <button className="action btn-delete">Delete</button>
+                    </Link>
+
                 </div>
             </div>
         )

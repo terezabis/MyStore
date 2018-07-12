@@ -1,10 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import CreateProductForm from '../products/ProductForm';
 
 export default class AddProduct extends Component {
     render = () => {
         return (
-            // TODO: 
-            <h1>Added new product</h1>
+            <div>
+                <h3>Create new product</h3>
+                <CreateProductForm />
+            </div>
         )
     }
 }

@@ -11,15 +11,15 @@ export default class Products extends Component {
     getProducts = () =>
         requester.get('appdata', 'products', 'kinvey')
             .then(res => {
-               this.setState({ products: res })
+                this.setState({ products: res })
             });
 
     componentDidMount = () => this.getProducts();
 
     render = () => {
-        console.log(this.state);
         return (
             <section id="viewProducts">
+                <h3>All products</h3>
                 {this.state.products.map((p, i) => <Product key={p._id} index={i} {...p} />)}
             </section>
         )

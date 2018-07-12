@@ -13,6 +13,7 @@ export default class Notification extends Component {
         this.state = DEFAULT_STATE;
 
         observer.subscribe(observer.events.notification, this.showNotification); 
+
     }
 
     showNotification = data => {
@@ -33,7 +34,7 @@ export default class Notification extends Component {
 
         if (this.state.message) {
             return (
-                <div id={notificationId} className="notification">
+                <div id={notificationId} className="notification" onClick={this.hideNotification}>
                     <span>{this.state.message}</span>
                 </div>)
         } else {

@@ -1,13 +1,15 @@
 import $ from 'jquery';
 const kinveyBaseUrl = "https://baas.kinvey.com/";
 const kinveyAppKey = "kid_HJzmCWf77";
-const kinveyAppSecret = "3a5bea2fda4c496db8d0bc9c268a226e";
+//const kinveyAppSecret = "3a5bea2fda4c496db8d0bc9c268a226e";
+const guestUsername = "react";
+const guestPass = "1234";
 
 // Creates the authentication header
 function makeAuth(type) {
     return type === 'basic'
         //?  'Basic ' + btoa(kinveyAppKey + ':' + kinveyAppSecret)
-        ?  'Basic ' + btoa('react' + ':' + '1234')
+        ?  'Basic ' + btoa(guestUsername + ':' + guestPass)
         :  'Kinvey ' + sessionStorage.getItem('authtoken');
 }
 
@@ -31,7 +33,6 @@ function get (module, endpoint, auth) {
 function post (module, endpoint, auth, data) {
     let req = makeRequest('POST', module, endpoint, auth);
     req.data = data;
-    //console.log(req)
     return $.ajax(req);
 }
 
