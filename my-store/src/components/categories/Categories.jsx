@@ -17,12 +17,11 @@ export default class Categories extends Component {
     componentDidMount = () => this.getCategories();
 
     render = () => {
-        console.log(this.state);
         return (
-            <div id="viewCategories">
-                <h3>All products</h3>
+            <section id="viewCategories">
+                <h3>All categories</h3>
                 {this.state.categories.map((c, i) => <Category key={c._id} index={i} {...c} />)}
-            </div>
+            </section>
         )
     }
 }

@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import requester from '../../infrastructure/requester';
-import Products from './../products/Products';
+import Product from './Product';
 
 export default class ProductsByCategory extends Component {
     constructor(props) {
@@ -21,26 +21,25 @@ export default class ProductsByCategory extends Component {
                     name: res.name,
                 })
             })
-            .catch(console.log("here"));
+            .catch(console.log());
         requester.get('appdata', 'products?query={"category_id":"' + categoryId + '"}', 'kinvey')
             .then(res => {
                 this.setState({ products: res })
             });
     }
-    
+
+
 
     render = () => {
+        const noProductsMessage = <p className="no-prod-mess">Sorry... No products in the category...</p>
+
         return (
-            <Fragment>
-                <section id="viewProductsByCategory">
-                    <div className="title">
-                        <strong>{this.state.name}</strong>
-                    </div>
-
-                    <Products products={this.state.products} />
-
-                </section>
-            </Fragment>
+            <section id="viewProductsByCategory">
+                <div className="title-page">
+                    <h3>All products in {this.state.name}</h3>
+                </div>
+                {this.state.products.length > 0 ? this.state.products.map((p, i) => <Product key={p._id} index={i} {...p} />) : noProductsMessage}
+            </section>
         )
     }
 }

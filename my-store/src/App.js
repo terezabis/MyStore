@@ -14,8 +14,10 @@ import Products from './components/products/Products'
 import AddProduct from './components/products/AddProduct';
 import Categories from './components/categories/Categories'
 import AddCategory from './components/categories/AddCategory';
-import ProductsByCategory from './components/categories/ProductsByCategory';
+import ProductsByCategory from './components/products/ProductsByCategory';
 import EditProduct from './components/products/EditProduct';
+import ProductDetails from './components/products/ProductDetails';
+import EditCategory from './components/categories/EditCategory';
 
 class App extends Component {
   render() {
@@ -29,9 +31,11 @@ class App extends Component {
           <Route path='/products' exact component={Products} />          
           <Route path='/categories' exact component={Categories} />
           <Route path='/category/:id' exact component={ProductsByCategory} />
-          <Route path='/add-product' exact component={withAdminAuthorization(AddProduct)} />
-          <Route path='/add-category' exact component={withAdminAuthorization(AddCategory)} />
-          <Route path='/edit-product/:id' exact component={withAdminAuthorization(EditProduct)} />
+          <Route path='/category/edit/:id' exact component={withAdminAuthorization(EditCategory)} />
+          <Route path='/category/add' exact component={withAdminAuthorization(AddCategory)} />
+          <Route path='/product/add' exact component={withAdminAuthorization(AddProduct)} />
+          <Route path='/product/edit/:id' exact component={withAdminAuthorization(EditProduct)} />
+          <Route path='/product/details/:id' exact component={ProductDetails} />
           <Route path='/login' component={LoginForm} />
           <Route path='/register' component={RegisterForm} />
           <Route path='/logout' component={Logout} />

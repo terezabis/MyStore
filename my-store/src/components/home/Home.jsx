@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Product from '../products/Product'
 import requester from '../../infrastructure/requester';
+import ProductHome from './../products/ProductHome';
 
 export default class HomeContainer extends Component {
     constructor(props) {
@@ -25,7 +25,7 @@ export default class HomeContainer extends Component {
                         <h4>Now you see last added products. If you want to check out our entire stock of products, you need to log in or register for free.</h4>
                     </div>
                     <div>
-                        {this.state.products.slice(-3).map((p, i) => <Product key={p._id} index={i} {...p} />)}
+                        {this.state.products.slice(-3).map((p, i) => <ProductHome key={p._id} index={i} {...p} />)}
                     </div>
             </section>
         )

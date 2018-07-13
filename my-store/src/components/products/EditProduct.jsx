@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CreateProductForm from '../products/ProductForm';
+import ProductForm from '../products/ProductForm';
 
 export default class EditProduct extends Component {
     render = () => {
@@ -8,7 +8,7 @@ export default class EditProduct extends Component {
         return (
             <div>
                 <h3>Edit product</h3>
-                <CreateProductForm productId={productId}/>
+                <ProductForm productId={productId}/>
             </div>
         )
     }

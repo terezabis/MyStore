@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import withFormManager from './../../hocs/withFormManager';
+import withFormManager from '../../hocs/withFormManager';
 import userModel from '../../models/userModel'
 import userService from '../../infrastructure/userService'
 

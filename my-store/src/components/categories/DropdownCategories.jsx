@@ -7,7 +7,7 @@ export default class SelectBox extends Component {
         super(props);
 
         this.state = {
-            value: 'Select an Option',
+            category_id: '',
             categories: []
         };
 
@@ -17,21 +17,23 @@ export default class SelectBox extends Component {
     getCategories = () =>
         requester.get('appdata', 'categories', 'kinvey')
             .then(res => {
-                //console.log(res)
                 this.setState({ categories: res })
             });
 
     componentDidMount = () => this.getCategories();
 
-    handleChange(e) {
-        console.log(e.target.value)
+    handleChange(ev) {
+        let name = ev.target.name;
+        let value = ev.target.value;
+        
         this.setState({
-            value: e.target.value
-        })
+            category_id: value
+        });
+        console.log(this.state)
     }
     render() {
         return (
-            <select name="category_id" onChange={this.handleChange} className="form-control">
+            <select name="category_id" value={this.state.category_id} onChange={this.handleChange} className="form-control">
                 {this.state.categories.map((c, i) => {
                     return <option value={c._id} key={c._id} >{c.name}</option>
                 })}

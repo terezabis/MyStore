@@ -8,19 +8,23 @@ export default class Product extends Component {
         super(props);
 
         this.OnDeleted = this.OnDeleted.bind(this);
+        this.onBuy = this.onBuy.bind(this);
+    }
+
+    onBuy(ev) {
+        observer.trigger(observer.events.notification, {
+            type: 'success',
+            message: 'Product is added to your order.'
+        });
     }
 
     OnDeleted(ev) {
-        // TODO: There is a error when a product is deleted
         let id = this.props._id;
         requester.remove('appdata', `products/${id}`, 'Kinvey').then(res => {
-            this.props.isDeleted(true);
             observer.trigger(observer.events.notification, {
                 type: 'success',
-                message: 'Product deleted.'
+                message: 'Product is deleted.'
             });
-            // this.props.history.push('/');
-            // this.props.history.push(`/comments/${this.props.postId}`);
         }).catch(err => {
             console.log(err);
         });
@@ -28,15 +32,12 @@ export default class Product extends Component {
 
     render = () => (
         <div className="product">
-
             <div className="thumbnail">
                 <img src={this.props.image_url} alt="" />
             </div>
             <div className="product-content">
                 <div className="title">
-                    <a href={this.props.url}>
-                        {this.props.title}
-                    </a>
+                    {this.props.title} - {this.props.price} €
                 </div>
 
                 <div className="controls">
@@ -44,13 +45,13 @@ export default class Product extends Component {
                     <Link to={'/product/details/' + this.props._id}>
                         <button className="action btn-details">Details</button>
                     </Link>
-                    <Link to={'/product/buy/' + this.props._id}>
-                        <button className="action btn-buy">Buy</button>
+                    <Link to={'/products'}>
+                        <button className="action btn-buy" onClick={this.onBuy}>Buy</button>
                     </Link>
-                    <Link to={'/edit-product/' + this.props._id} className="editProduct">
+                    <Link to={'/product/edit/' + this.props._id} className="editProduct">
                         <button className="action btn-edit">Edit</button>
                     </Link>
-                    <Link to="/" className="deleteProduct">
+                    <Link to="/products" className="deleteProduct">
                         <button className="action btn-delete" onClick={this.OnDeleted}>Delete</button>
                     </Link>
                 </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import requester from '../../infrastructure/requester';
 import observer from '../../infrastructure/observer';
-import DropDownCategories from '../products/DropdownCategories';
+import DropDownCategories from '../categories/DropdownCategories';
 
 class ProductForm extends Component {
     constructor(props) {
@@ -67,8 +67,7 @@ class ProductForm extends Component {
                 category_id: this.state.category_id
             };
 
-            const productId = this.props.productId;
-
+            const productId = this.props.match.params.id;
             if (productId) {
                 requester.update('appdata', `products/${productId}`, 'Kinvey', product).then(res => {
                     observer.trigger(observer.events.notification, { type: 'success', message: 'Product edited.' });
@@ -93,16 +92,15 @@ class ProductForm extends Component {
     }
 
     componentDidMount() {
-        const productId = this.props.productId;
-
+        const productId = this.props.match.params.id;
         if (productId) {
             requester.get('appdata', `products/${productId}`, 'Kinvey').then(res => {
                 let product = {
-                    title: this.state.title,
-                    image_url: this.state.image_url,
-                    price: this.state.price,
-                    description: this.state.description,
-                    category_id: this.state.category_id
+                    title: res.title,
+                    image_url: res.image_url,
+                    price: res.price,
+                    description: res.description,
+                    category_id: res.category_id
                 };
 
                 this.setState(product);
@@ -125,8 +123,8 @@ class ProductForm extends Component {
                     <label>Description (optional):</label>
                     <textarea name="description"  value={this.state.description} onChange={this.handleChange}></textarea>
                     <label>Category:</label>
-                    <DropDownCategories value={this.props.category_id}  onChange={this.handleChange} />
-                    <input type="submit" value={this.props.productId ? "Edit Product" : "Create Product"} />
+                    <DropDownCategories value={this.state.category_id}  onChange={this.handleChange}/>
+                    <input type="submit" value={this.props.productId ? "Edit" : "Create"} />
                 </form>
             </div>
         )

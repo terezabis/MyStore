@@ -16,6 +16,12 @@ export default class Navigation extends Component {
 
     render = () => {
 
+        const adminNav =
+            <div className="admin-nav">
+                <NavLink className="nav" to='/category/add'>Add Category</NavLink>
+                <NavLink className="nav" to='/product/add'>Add Product</NavLink>
+            </div>
+
         const notLogedInNav =
             <div className="nav-items">
                 <NavLink className="nav" to='/login'>Log in</NavLink>
@@ -24,14 +30,12 @@ export default class Navigation extends Component {
         const logedInNav =
             <div className="nav-items">
                 <NavLink className="nav" to='/products'>Products</NavLink>
-                <NavLink className="nav" to='/categories'>Categories</NavLink>
-                <NavLink className="nav" to='/add-category'>Add Category</NavLink>
-                <NavLink className="nav" to='/add-product'>Add Product</NavLink>
+                <NavLink className="nav" to='/categories'>Categories</NavLink>                
             </div>
 
         const loggedInSection =
             <div id="profile">
-                <span id="username">Hello, {this.state.username}!</span>|
+                <span id="username">Hello, {this.state.username}! |</span>
                 <Link to="/logout">logout</Link>
             </div>
 
@@ -39,7 +43,8 @@ export default class Navigation extends Component {
             <div id="menu">
                 <NavLink className="nav" to='/'>Home</NavLink>
                 {this.state.username ? logedInNav : notLogedInNav}
-                {this.state.username ? loggedInSection : null}
+                {this.state.username === 'admin' ? adminNav : null}
+                {this.state.username ? loggedInSection : null}                
             </div>
         )
     }

@@ -63,7 +63,6 @@ export default function withFormManager(Form, model, submitter) {
         }
 
         render = () => {
-            //console.log('FormManager', this.state);
             return (<Form
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}

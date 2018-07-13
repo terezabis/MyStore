@@ -27,13 +27,28 @@
     background-color: whitesmoke;
 }
 
+a {
+    text-decoration: none ;
+ }
+
+ a:visited {
+    text-decoration: none;
+}
+
+#username{
+    padding: 5px;
+    color: black;
+} 
+
 #profile {
     margin-left: 20px;
+    font-weight: bold;
 }
 
 img {
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 194px;
+    max-width: 194px;
+    padding: 3px;
 }
 
 #notifications {
@@ -71,13 +86,41 @@ img {
     text-shadow: 1px 1px #7FBAE0;
 }
 
+.product-home{
+    display: inline-block;
+    margin: 5px;
+    border: solid #7FBAE0;
+    background-color: aliceblue;
+    width: 200px;
+    height: 240px;
+}
+
 .product{
- display: inline-block;
- margin: 5px;
- border: solid #7FBAE0;
- background-color: aliceblue;
- width: 200px;
- height: 320px;
+    display: inline-block;
+    margin: 5px;
+    border: solid #7FBAE0;
+    background-color: aliceblue;
+    width: 200px;
+    height: 320px;
+}
+
+.product-details {
+    display: inline-block;
+    margin: 5px;
+    border: solid #7FBAE0;
+    background-color: aliceblue;
+    max-width: 90%;
+    max-height: 90%;
+    padding: 10px;
+}
+
+.title-details {
+    padding: 10px;
+    font-weight: 60;
+}
+.title-details .tit, .prc {
+    font-weight: 60;
+    font-size: 25px;
 }
 
 .thumbnail {
@@ -98,11 +141,15 @@ img {
     width: 70px;
     text-shadow: 1px 1px black;
 }
-.btn-buy{
+.btn-buy {
     background-color: #393;
 }
-.btn-delete{
+.btn-delete {
     background-color: #F50;
+}
+
+.btn-edit {
+    background-color: rgb(99, 126, 145);
 }
 
 .title {
@@ -137,6 +184,12 @@ img {
 #viewCategories{
     display: absolute;
     justify-content: center;
+}
+
+.no-prod-mess {
+    font-weight: 600;
+    margin-top: 100px;
+    color: #BB0000;
 }
 
 form {

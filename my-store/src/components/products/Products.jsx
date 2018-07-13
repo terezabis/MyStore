@@ -19,7 +19,9 @@ export default class Products extends Component {
     render = () => {
         return (
             <section id="viewProducts">
-                <h3>All products</h3>
+                <div className="title-page">
+                    <h3>All products</h3>
+                </div>
                 {this.state.products.map((p, i) => <Product key={p._id} index={i} {...p} />)}
             </section>
         )

@@ -12,13 +12,9 @@ export default class Category extends Component {
                     <Link to={'/category/' + this.props._id}>
                         <button className="action btn-details">Products</button>
                     </Link>
-                    <Link to='/' className="editCategory">
+                    <Link to={'/category/edit/' + this.props._id} className="editCategory">
                         <button className="action btn-edit">Edit</button>
                     </Link>
-                    <Link to="/" className="deleteCategory">
-                        <button className="action btn-delete">Delete</button>
-                    </Link>
-
                 </div>
             </div>
         )
