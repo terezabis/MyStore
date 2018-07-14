@@ -22,6 +22,7 @@ export default class Navigation extends Component {
 
     render = () => {
 
+        // create constants for different access
         const adminNav =
             <div className="admin-nav">
                 <NavLink className="nav" to='/category/add'>Add Category</NavLink>
@@ -48,8 +49,11 @@ export default class Navigation extends Component {
         return (
             <div id="menu">
                 <NavLink className="nav" to='/'>Home</NavLink>
+                {/* check if there is user logged and show appropriate navigation tab */}
                 {this.state.username ? logedInNav : notLogedInNav}
+                {/* check if the user logged is with 'Admin' role and show appropriate navigation tab */}
                 {isAdmin() ? adminNav : null}
+                {/* check if there is user logged and show greeting */}
                 {this.state.username ? loggedInSection : null}                
             </div>
         )

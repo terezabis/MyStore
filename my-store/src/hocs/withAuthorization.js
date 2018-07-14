@@ -37,6 +37,7 @@ function withAuthorization(WrappedComponent, roles) {
 export function withAdminAuthorization(Component) {
     return withAuthorization(Component, [AdminRoleId]);
 }
+
 export function isAdmin() {
     let roles = sessionStorage.getItem('userRoles')
 
@@ -47,7 +48,3 @@ export function isAdmin() {
 
     return false;
 }
-
-/* export function withModeratorAuthorization(Component) {
-    return withAuthorization(Component, ['Moderator', 'Admin']);
-} */

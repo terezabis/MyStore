@@ -22,11 +22,7 @@ class ProductForm extends Component {
     }
 
     handleCatChange(newValue) {
-        console.log("start");
         this.setState({category_id: newValue});
-        this.forceUpdate();
-        console.log("stop");
-        console.log(this.state);
     }
 
     handleChange = ev => {
@@ -40,6 +36,7 @@ class ProductForm extends Component {
 
     onSubmit(ev) {
         ev.preventDefault();
+        // some validate for filds in form for create and update product
         if (this.state.title === '') {
             observer.trigger(observer.events.notification, {
                 type: 'error',
@@ -75,7 +72,9 @@ class ProductForm extends Component {
             };
 
             const productId = this.props.match.params.id;
+            // check if there is 'id' of product
             if (productId) {
+                //update the product in database
                 requester.update('appdata', `products/${productId}`, 'Kinvey', product).then(res => {
                     observer.trigger(observer.events.notification, { type: 'success', message: 'Product edited.' });
                     this.props.history.push('/products');
@@ -87,6 +86,7 @@ class ProductForm extends Component {
                 return;
             }
 
+            // there isn't id in props -> create new product in database with the setted state
             requester.post('appdata', 'products', 'Kinvey', product)
                 .then(res => {
                     observer.trigger(observer.events.notification, { type: 'success', message: 'Product created.' });
@@ -100,6 +100,7 @@ class ProductForm extends Component {
 
     componentDidMount() {
         const productId = this.props.match.params.id;
+        // if product's id exist: get data from database and set the state
         if (productId) {
             requester.get('appdata', `products/${productId}`, 'Kinvey').then(res => {
                 let product = {

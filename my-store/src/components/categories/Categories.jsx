@@ -8,6 +8,7 @@ export default class Categories extends Component {
         this.state = { categories: [] }
     }
 
+    // get all categories from database
     getCategories = () =>
         requester.get('appdata', 'categories', 'kinvey')
             .then(res => {

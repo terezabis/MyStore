@@ -5,7 +5,9 @@ export default class AddProduct extends Component {
     render = () => {
         return (
             <div>
-                <h3>Create new product</h3>
+                <div className="title-page">
+                    <h3>Create new product</h3>
+                </div>
                 <ProductForm />
             </div>
         )

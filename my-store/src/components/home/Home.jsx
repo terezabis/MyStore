@@ -9,6 +9,7 @@ export default class HomeContainer extends Component {
             products: [] }
     }    
 
+    //get products from database
     getProducts = () =>
         requester.get('appdata', 'products', 'basic')
             .then(res => {
@@ -25,6 +26,7 @@ export default class HomeContainer extends Component {
                         <h4>Now you see last added products. If you want to check out our entire stock of products, you need to log in or register for free.</h4>
                     </div>
                     <div>
+                        {/* listing af 3 last added products */}
                         {this.state.products.slice(-3).map((p, i) => <ProductHome key={p._id} index={i} {...p} />)}
                     </div>
             </section>

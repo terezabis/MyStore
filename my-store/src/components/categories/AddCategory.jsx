@@ -3,11 +3,13 @@ import CategoryForm from './CategoryForm';
 
 
 export default class AddCategory extends Component {
-    
+
     render = () => {
         return (
             <div>
-                <h3>Create new category</h3>
+                <div className="title-page">
+                    <h3>Create new category</h3>
+                </div>
                 <CategoryForm />
             </div>
         )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
+// product container wich is rendered on home page
 export default class ProductHome extends Component {
-
 
     render = () => (
         <section id="home-page" className="product-home">

@@ -8,13 +8,18 @@ export default class Products extends Component {
         this.state = { products: [] }
     }
 
+    //get all products from database
     getProducts = () =>
         requester.get('appdata', 'products', 'kinvey')
             .then(res => {
                 this.setState({ products: res })
             });
 
-    componentDidMount = () => this.getProducts();
+    // load data
+    componentDidMount = () => {
+        this.getProducts();
+        this.forceUpdate();
+    } 
 
     render = () => {
         return (

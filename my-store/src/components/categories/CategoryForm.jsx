@@ -36,7 +36,9 @@ class CategoryForm extends Component {
             };
 
             const categoryId = this.props.categoryId;
+            // check if there is 'id' of category
             if (categoryId) {
+                //update the category in database
                 requester.update('appdata', `categories/${categoryId}`, 'Kinvey', category).then(res => {
                     observer.trigger(observer.events.notification, { type: 'success', message: 'Category edited.' });
                     this.props.history.push('/categories');
@@ -48,6 +50,7 @@ class CategoryForm extends Component {
                 return;
             }
 
+            // not id -> create new category in database
             requester.post('appdata', 'categories', 'Kinvey', category)
                 .then(res => {
                     observer.trigger(observer.events.notification, { type: 'success', message: 'Category created.' });
@@ -61,6 +64,7 @@ class CategoryForm extends Component {
 
     componentDidMount() {
         const categoryId = this.props.categoryId;
+        // if category's id exist: get data from database and set state
         if (categoryId) {
             requester.get('appdata', `categories/${categoryId}`, 'Kinvey').then(res => {
                 let category = {

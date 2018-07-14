@@ -152,6 +152,10 @@ img {
     background-color: rgb(99, 126, 145);
 }
 
+.btn-back {
+    background-color: rgb(154, 156, 156);
+}
+
 .title {
     font-size: 16px;
     font-weight: bold;
