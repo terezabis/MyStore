@@ -1,2 +1,2 @@
 # MyStore
-React project
+React fundaments project
