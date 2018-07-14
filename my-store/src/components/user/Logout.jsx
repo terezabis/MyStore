@@ -9,6 +9,7 @@ export default class Logout extends Component {
             .then(res => {
                 sessionStorage.removeItem('authtoken');
                 sessionStorage.removeItem('userRoles');
+                sessionStorage.removeItem('username');
                 observer.trigger(observer.events.loginUser, undefined);
             });
     }

@@ -20,6 +20,7 @@ function withAuthorization(WrappedComponent, roles) {
 
         render = () => {
             let userHasAccess = false;
+
             for (let role of roles) {
                 userHasAccess = userHasAccess || this.state.roles.indexOf(role) !== -1;
             }
@@ -35,6 +36,16 @@ function withAuthorization(WrappedComponent, roles) {
 
 export function withAdminAuthorization(Component) {
     return withAuthorization(Component, [AdminRoleId]);
+}
+export function isAdmin() {
+    let roles = sessionStorage.getItem('userRoles')
+
+    if (roles) {
+        let rolesArray = roles.split(',');
+        return rolesArray.indexOf(AdminRoleId) !== -1;    
+    }
+
+    return false;
 }
 
 /* export function withModeratorAuthorization(Component) {

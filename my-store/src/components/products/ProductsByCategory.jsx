@@ -36,7 +36,7 @@ export default class ProductsByCategory extends Component {
         return (
             <section id="viewProductsByCategory">
                 <div className="title-page">
-                    <h3>All products in {this.state.name}</h3>
+                    <h3>All products in "{this.state.name}"</h3>
                 </div>
                 {this.state.products.length > 0 ? this.state.products.map((p, i) => <Product key={p._id} index={i} {...p} />) : noProductsMessage}
             </section>

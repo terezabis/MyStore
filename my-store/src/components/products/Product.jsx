@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import observer from '../../infrastructure/observer';
 import requester from '../../infrastructure/requester';
+import { isAdmin } from '../../hocs/withAuthorization';
 
 export default class Product extends Component {
     constructor(props) {
@@ -30,32 +31,40 @@ export default class Product extends Component {
         });
     }
 
-    render = () => (
-        <div className="product">
-            <div className="thumbnail">
-                <img src={this.props.image_url} alt="" />
+    render = () => {
+
+        const adminNav =
+            <div className="admin-nav">
+                <Link to={'/product/edit/' + this.props._id} className="editProduct">
+                    <button className="action btn-edit">Edit</button>
+                </Link>
+                <Link to="/products" className="deleteProduct">
+                    <button className="action btn-delete" onClick={this.OnDeleted}>Delete</button>
+                </Link>
             </div>
-            <div className="product-content">
-                <div className="title">
-                    {this.props.title} - {this.props.price} €
+
+        return (
+            <div className="product">
+                <div className="thumbnail">
+                    <img src={this.props.image_url} alt="" />
+                </div>
+                <div className="product-content">
+                    <div className="title">
+                        {this.props.title} - {this.props.price} €
                 </div>
 
-                <div className="controls">
+                    <div className="controls">
 
-                    <Link to={'/product/details/' + this.props._id}>
-                        <button className="action btn-details">Details</button>
-                    </Link>
-                    <Link to={'/products'}>
-                        <button className="action btn-buy" onClick={this.onBuy}>Buy</button>
-                    </Link>
-                    <Link to={'/product/edit/' + this.props._id} className="editProduct">
-                        <button className="action btn-edit">Edit</button>
-                    </Link>
-                    <Link to="/products" className="deleteProduct">
-                        <button className="action btn-delete" onClick={this.OnDeleted}>Delete</button>
-                    </Link>
+                        <Link to={'/product/details/' + this.props._id}>
+                            <button className="action btn-details">Details</button>
+                        </Link>
+                        <Link to={'/products'}>
+                            <button className="action btn-buy" onClick={this.onBuy}>Buy</button>
+                        </Link>
+                        {isAdmin() ? adminNav : null}
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }

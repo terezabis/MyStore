@@ -30,9 +30,10 @@ class App extends Component {
           <Route path='/' exact component={Home} />
           <Route path='/products' exact component={Products} />          
           <Route path='/categories' exact component={Categories} />
-          <Route path='/category/:id' exact component={ProductsByCategory} />
-          <Route path='/category/edit/:id' exact component={withAdminAuthorization(EditCategory)} />
           <Route path='/category/add' exact component={withAdminAuthorization(AddCategory)} />
+          <Route path='/categories/:id' exact component={ProductsByCategory} />
+          <Route path='/category/edit/:id' exact component={withAdminAuthorization(EditCategory)} />
+          
           <Route path='/product/add' exact component={withAdminAuthorization(AddProduct)} />
           <Route path='/product/edit/:id' exact component={withAdminAuthorization(EditProduct)} />
           <Route path='/product/details/:id' exact component={ProductDetails} />

@@ -17,10 +17,17 @@ class ProductForm extends Component {
         }
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleCatChange = this.handleCatChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-
+    handleCatChange(newValue) {
+        console.log("start");
+        this.setState({category_id: newValue});
+        this.forceUpdate();
+        console.log("stop");
+        console.log(this.state);
+    }
 
     handleChange = ev => {
         let name = ev.target.name;
@@ -53,11 +60,11 @@ class ProductForm extends Component {
                 type: 'error',
                 message: 'The price can not be empty.'
             });
-        /* }  else if (this.state.category_id === '') {
+          }  else if (this.state.category_id === '') {
             observer.trigger(observer.events.notification, {
                 type: 'error',
                 message: 'Please add category.'
-            }); */
+            }); 
         } else {
             let product = {
                 title: this.state.title,
@@ -104,6 +111,7 @@ class ProductForm extends Component {
                 };
 
                 this.setState(product);
+                this.refs.catDropDown.setDropDownValue(res.category_id);
             }).catch(err => {
                 console.log(err);
             });
@@ -123,7 +131,7 @@ class ProductForm extends Component {
                     <label>Description (optional):</label>
                     <textarea name="description"  value={this.state.description} onChange={this.handleChange}></textarea>
                     <label>Category:</label>
-                    <DropDownCategories value={this.state.category_id}  onChange={this.handleChange}/>
+                    <DropDownCategories name="category_id" ref='catDropDown' value={this.state.category_id}  onSelectChange={this.handleCatChange}/>
                     <input type="submit" value={this.props.productId ? "Edit" : "Create"} />
                 </form>
             </div>

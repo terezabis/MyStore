@@ -29,6 +29,7 @@ export default class ProductDetails extends Component {
 
     componentDidMount() {
         let productId = this.props.match.params.id;
+        console.log(this.props.match.params.id)
         if (productId) {
             requester.get('appdata', `products/${productId}`, 'Kinvey').then(res => {
                 let product = {
@@ -80,7 +81,7 @@ export default class ProductDetails extends Component {
                         </Link>
                     </div>
                     <div>
-                        <Link to={'/product/edit/' + this.props._id} className="editProduct">
+                        <Link to={'/product/edit/' + this.props.match.params.id} className="editProduct">
                             <button className="action btn-edit">Edit</button>
                         </Link>
                     </div>

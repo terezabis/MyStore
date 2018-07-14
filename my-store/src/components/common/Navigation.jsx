@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import observer from '../../infrastructure/observer'
+import { isAdmin } from '../../hocs/withAuthorization';
 
 export default class Navigation extends Component {
     constructor(props) {
         super(props);
         this.state = { username: '' };
+
+        let tempUser = sessionStorage.getItem('username');
+        if (tempUser) {
+            this.state = { username: tempUser };
+        }
 
         observer.subscribe(observer.events.loginUser, this.userLoggedIn);
     }
@@ -43,7 +49,7 @@ export default class Navigation extends Component {
             <div id="menu">
                 <NavLink className="nav" to='/'>Home</NavLink>
                 {this.state.username ? logedInNav : notLogedInNav}
-                {this.state.username === 'admin' ? adminNav : null}
+                {isAdmin() ? adminNav : null}
                 {this.state.username ? loggedInSection : null}                
             </div>
         )

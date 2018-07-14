@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import requester from '../../infrastructure/requester';
 
 
-export default class SelectBox extends Component {
+export default class DropdownCategories extends Component {
     constructor(props) {
         super(props);
 
@@ -11,7 +11,8 @@ export default class SelectBox extends Component {
             categories: []
         };
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.setDropDownValue = this.setDropDownValue.bind(this);
     }
 
     getCategories = () =>
@@ -22,18 +23,18 @@ export default class SelectBox extends Component {
 
     componentDidMount = () => this.getCategories();
 
-    handleChange(ev) {
-        let name = ev.target.name;
-        let value = ev.target.value;
-        
-        this.setState({
-            category_id: value
-        });
-        console.log(this.state)
+    handleSelectChange(ev) {
+        let value = this.refs.dropdown.value;
+        this.setState({category_id: this.refs.dropdown.value});
+        this.props.onSelectChange(value);    
+    }
+
+    setDropDownValue(newVal) {
+        this.setState({category_id: newVal});
     }
     render() {
         return (
-            <select name="category_id" value={this.state.category_id} onChange={this.handleChange} className="form-control">
+            <select name="category_id" ref='dropdown' value={this.state.category_id} onChange={this.handleSelectChange} className="form-control">
                 {this.state.categories.map((c, i) => {
                     return <option value={c._id} key={c._id} >{c.name}</option>
                 })}
