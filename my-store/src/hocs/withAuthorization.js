@@ -10,10 +10,12 @@ function withAuthorization(WrappedComponent, roles) {
             };
         }
 
+        // load users roles from databse
         componentDidMount = () => {
             let roles = sessionStorage.getItem('userRoles')
 
             if (roles) {
+                // if there are roles -> change state
                 this.setState({ roles : roles.split(',') });
             }
         }
@@ -25,7 +27,8 @@ function withAuthorization(WrappedComponent, roles) {
                 userHasAccess = userHasAccess || this.state.roles.indexOf(role) !== -1;
             }
 
-            if (userHasAccess) {
+            // if user has the role with access -> render component; else -> message
+            if (userHasAccess) {                
                 return <WrappedComponent {...this.props} />
             } else {
                 return <h1>Unauthorized</h1>
@@ -34,10 +37,12 @@ function withAuthorization(WrappedComponent, roles) {
     }
 }
 
+// show component only if loggedin user has role 'Admin' 
 export function withAdminAuthorization(Component) {
     return withAuthorization(Component, [AdminRoleId]);
 }
 
+// render element only if loggedin user has role 'Admin' 
 export function isAdmin() {
     let roles = sessionStorage.getItem('userRoles')
 

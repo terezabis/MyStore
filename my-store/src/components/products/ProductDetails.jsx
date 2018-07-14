@@ -46,7 +46,6 @@ export default class ProductDetails extends Component {
     // load data
     componentDidMount() {
         let productId = this.props.match.params.id;
-        console.log(this.props.match.params.id)
         if (productId) {
             // get data for product from database if exist
             requester.get('appdata', `products/${productId}`, 'Kinvey').then(res => {
